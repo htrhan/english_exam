@@ -147,7 +147,9 @@ class _GridviewState extends State<Gridview> {
       ),
       title: 'Burası?',
       desc: 'This is also Ignored',
-      btnOkOnPress: () {},
+      btnOkOnPress: () {
+        print("hello world");
+      },
     )..show();
   }
 }
