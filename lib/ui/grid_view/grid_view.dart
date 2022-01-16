@@ -32,13 +32,8 @@ class _GridviewState extends State<Gridview> {
                       /* image: DecorationImage(
                         image: NetworkImage(item.images), fit: BoxFit.cover),*/
                     ),
-                    child: InkWell(
-                      overlayColor:
-                          MaterialStateProperty.all(Colors.greenAccent),
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {
-                        _awesomeDialog(context, item);
-                      },
+                    child: TextButtonWidget(
+                      category: item,
                       child: _glassmorphicWidget(item.icon, item.title),
                     ),
                   ),
@@ -104,52 +99,4 @@ class _GridviewState extends State<Gridview> {
           ),
         ),
       );
-
-  void _awesomeDialog(context, category) {
-    // ignore: avoid_single_cascade_in_expression_statements
-    AwesomeDialog(
-      dialogBackgroundColor: const Color(0xff676FA3),
-      context: context,
-      animType: AnimType.TOPSLIDE,
-      dialogType: DialogType.QUESTION,
-      btnOkText: "Start Quiz",
-      showCloseIcon: true,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              category.title,
-              style: const TextStyle(
-                  fontStyle: FontStyle.italic, color: Color(0xffF3D5C0)),
-            ),
-            const Divider(
-              color: Colors.deepOrange,
-              endIndent: 50,
-              indent: 50,
-            ),
-            const Text(
-              'Select Total Number of Questions',
-              style: TextStyle(
-                  fontStyle: FontStyle.italic, color: Color(0xffF3D5C0)),
-            ),
-            const SizedBox(height: 15),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 18,
-              child: Center(
-                child: TextButtonWidget(
-                  category: category,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      title: 'Burası?',
-      desc: 'This is also Ignored',
-      btnOkOnPress: () {
-        print("hello world");
-      },
-    )..show();
-  }
 }
