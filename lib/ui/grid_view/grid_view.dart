@@ -3,7 +3,6 @@ import 'package:english_quiz/ui/constants.dart';
 import 'package:english_quiz/ui/widget/text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 class Gridview extends StatefulWidget {
   const Gridview({Key? key}) : super(key: key);
