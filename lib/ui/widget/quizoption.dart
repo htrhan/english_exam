@@ -14,7 +14,7 @@ class _QuizOptionViewState extends State<QuizOptionView> {
   List number = [10, 20, 30, 40, 50];
   int selectedIndex = 0;
   int noOfQuestion = 10;
-  Color colour = Colors.deepOrange;
+  bool isHover = false;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -52,18 +52,19 @@ class _QuizOptionViewState extends State<QuizOptionView> {
             children: [
               Text(
                 widget.category.title,
-                style: const TextStyle(
-                    fontStyle: FontStyle.italic, color: Color(0xffF3D5C0)),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontStyle: FontStyle.italic),
               ),
               const Divider(
                 color: kRedColor,
                 endIndent: 50,
                 indent: 50,
               ),
-              const Text(
+              Text(
                 'Select Total Number of Questions',
-                style: TextStyle(
-                    fontStyle: FontStyle.italic, color: Color(0xffF3D5C0)),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               const SizedBox(height: 15),
               SizedBox(
@@ -82,11 +83,27 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                       side: const BorderSide(color: kGrayColor),
                     ),
                   ),
+                  elevation: MaterialStateProperty.all<double?>(
+                    10.0,
+                  ),
                 ),
-                onPressed: null,
-                child: const Text("Start Quiz"),
+                onPressed: () {},
+                child: Text(
+                  "Start Quiz",
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
               ),
             ],
+          ),
+        ),
+        const Positioned(
+          top: 0,
+          left: 16,
+          right: 16,
+          child: CircleAvatar(
+            backgroundColor: kBlueColor,
+            radius: 50,
+            backgroundImage: AssetImage("assets/gifs/dvj.gif"),
           ),
         ),
       ],
@@ -105,7 +122,7 @@ class _QuizOptionViewState extends State<QuizOptionView> {
           },
           child: Text(
             "${number[index]}",
-            style: const TextStyle(color: Colors.white),
+            style: Theme.of(context).textTheme.bodyText2,
           ),
           style: ButtonStyle(
             minimumSize: MaterialStateProperty.all<Size?>(
