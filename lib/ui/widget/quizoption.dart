@@ -1,6 +1,7 @@
 import 'package:english_quiz/modal/categories.dart';
 import 'package:english_quiz/ui/constants.dart';
 import "package:flutter/material.dart";
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class QuizOptionView extends StatefulWidget {
   QuizOptionView({Key? key, required this.category}) : super(key: key);
@@ -96,14 +97,23 @@ class _QuizOptionViewState extends State<QuizOptionView> {
             ],
           ),
         ),
-        const Positioned(
+        Positioned(
           top: 0,
           left: 16,
           right: 16,
           child: CircleAvatar(
             backgroundColor: kBlueColor,
             radius: 50,
-            backgroundImage: AssetImage("assets/gifs/dvj.gif"),
+            child: DefaultTextStyle(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontSize: 35, fontFamily: "Canterbury"),
+              child: AnimatedTextKit(animatedTexts: [
+                ScaleAnimatedText('Think'),
+                ScaleAnimatedText("?"),
+              ]),
+            ),
           ),
         ),
       ],
