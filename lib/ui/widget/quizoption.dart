@@ -1,8 +1,15 @@
+import 'package:english_quiz/database/db_helper.dart';
 import 'package:english_quiz/modal/categories.dart';
+import 'package:english_quiz/modal/question.dart';
+import 'package:english_quiz/ui/ErrorPage/error_page.dart';
+import 'package:english_quiz/ui/QuizPage/quiz_page.dart';
 import 'package:english_quiz/ui/constants.dart';
 import "package:flutter/material.dart";
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
+// ignore: must_be_immutable
 class QuizOptionView extends StatefulWidget {
   QuizOptionView({Key? key, required this.category}) : super(key: key);
   Category category;
@@ -15,7 +22,15 @@ class _QuizOptionViewState extends State<QuizOptionView> {
   List number = [10, 20, 30, 40, 50];
   int selectedIndex = 0;
   int noOfQuestion = 10;
-  bool isHover = false;
+
+  DbHelper dbhelper = DbHelper();
+  @override
+  void initState() {
+    super.initState();
+    dbhelper = DbHelper();
+    dbhelper.initDb();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -88,7 +103,9 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                     10.0,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _startQuiz();
+                },
                 child: Text(
                   "Start Quiz",
                   style: Theme.of(context).textTheme.bodyText2,
@@ -112,7 +129,13 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                   totalRepeatCount: 100,
                   pause: const Duration(milliseconds: 500),
                   animatedTexts: [
-                    ScaleAnimatedText("?"),
+                    ScaleAnimatedText(
+                      "?",
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(fontSize: 100),
+                    ),
                     ScaleAnimatedText('let\'s start!'),
                   ]),
             ),
@@ -152,4 +175,44 @@ class _QuizOptionViewState extends State<QuizOptionView> {
           ),
         ),
       );
+
+  void _startQuiz() async {
+    try {
+      List<Question>? questions =
+          (await dbhelper.getQuestions(widget.category, noOfQuestion))
+              .cast<Question>();
+
+      Navigator.pop(context);
+      if (questions.length < 1) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => ErrorPage(
+                  message:
+                      "There are not enough questions in the category, with the options you selected.",
+                )));
+        return;
+      }
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => QuizPage(
+                    questions: questions,
+                    category: widget.category,
+                  )));
+    } on SocketException catch (_) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ErrorPage(
+                    message:
+                        "Can't reach the servers, \n Please check your internet connection.",
+                  )));
+    } catch (e) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ErrorPage(
+                    message: "Unexpected error trying to connect to the API",
+                  )));
+    }
+  }
 }
