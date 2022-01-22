@@ -105,14 +105,16 @@ class _QuizOptionViewState extends State<QuizOptionView> {
             backgroundColor: kBlueColor,
             radius: 50,
             child: DefaultTextStyle(
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 35, fontFamily: "Canterbury"),
-              child: AnimatedTextKit(animatedTexts: [
-                ScaleAnimatedText('Think'),
-                ScaleAnimatedText("?"),
-              ]),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 50,
+                  ),
+              child: AnimatedTextKit(
+                  totalRepeatCount: 100,
+                  pause: const Duration(milliseconds: 500),
+                  animatedTexts: [
+                    ScaleAnimatedText("?"),
+                    ScaleAnimatedText('let\'s start!'),
+                  ]),
             ),
           ),
         ),
