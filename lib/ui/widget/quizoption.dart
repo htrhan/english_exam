@@ -104,7 +104,7 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                   ),
                 ),
                 onPressed: () {
-                  _startQuiz();
+                  // _startQuiz();
                 },
                 child: Text(
                   "Start Quiz",
@@ -176,7 +176,7 @@ class _QuizOptionViewState extends State<QuizOptionView> {
         ),
       );
 
-  void _startQuiz() async {
+/*  void _startQuiz() async {
     try {
       List<Question>? questions =
           (await dbhelper.getQuestions(widget.category, noOfQuestion))
@@ -214,5 +214,5 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                     message: "Unexpected error trying to connect to the API",
                   )));
     }
-  }
+  }*/
 }

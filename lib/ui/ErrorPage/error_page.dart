@@ -6,17 +6,26 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
+        fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/image1.png",
-            fit: BoxFit.cover,
+            "assets/images/bg.png",
+            fit: BoxFit.fill,
           ),
-          Text(message),
-          const TextButton(
-            onPressed: null,
-            child: Text("Retry"),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                "assets/images/image1.png",
+                fit: BoxFit.fill,
+              ),
+              Text(message),
+              const TextButton(
+                onPressed: null,
+                child: Text("Retry"),
+              ),
+            ],
           ),
         ],
       ),
