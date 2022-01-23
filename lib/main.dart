@@ -54,11 +54,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      initialRoute: "/",
+      /* initialRoute: "/",
       routes: {
         "/": (context) => QuizPage(),
-      },
-      // home: const MyHomePage(),
+      },*/
+      home: const MyHomePage(),
     );
   }
 }
