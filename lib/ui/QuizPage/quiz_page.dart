@@ -36,10 +36,11 @@ class _QuizPageState extends State<QuizPage> {
         key: _key,
         body: SafeArea(
           child: Container(
-            color: Colors.blue,
+            color: kBlueColor,
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 5),
@@ -47,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
                       Text("${_currentIndex + 1}/${widget.questions.length}"),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -60,17 +61,25 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                       child: Text(widget.questions[_currentIndex].question),
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     Card(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           ...options.map(
                             (option) => RadioListTile<dynamic>(
+                              dense: true,
+                              activeColor: _answers[_currentIndex] == option
+                                  ? kBlueColor
+                                  : kRedColor,
+                              tileColor: _answers[_currentIndex] == option
+                                  ? kRedColor
+                                  : kBlueColor,
                               title: Text(
                                 "$option",
                                 style: MediaQuery.of(context).size.width > 800
-                                    ? TextStyle(fontSize: 30.0)
+                                    ? const TextStyle(fontSize: 30.0)
                                     : null,
                               ),
                               groupValue: _answers[_currentIndex],
@@ -88,6 +97,20 @@ class _QuizPageState extends State<QuizPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color?>(kRedColor),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                              side: const BorderSide(color: kGrayColor),
+                            ),
+                          ),
+                          elevation: MaterialStateProperty.all<double?>(
+                            10.0,
+                          ),
+                        ),
                         onPressed: _nextSubmit,
                         child: Text(
                             _currentIndex == (widget.questions.length - 1)
