@@ -8,9 +8,9 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
-  late Database _db;
+  static Database? _db;
 
-  Future<Database> get db async {
+  Future<Database?> get db async {
     if (_db != null) return _db;
     _db = await initDb();
     return _db;
@@ -41,9 +41,10 @@ class DbHelper {
   }
 
   Future<List> getQuestions(Category category, int total) async {
-    Database db = await this.db;
-    var result =
-        await db.rawQuery('SELECT * FROM ydsdb ORDER BY RANDOM() LIMIT $total');
-    return Question.fromData(result);
+    print(category);
+    Database? db = await this.db;
+    var result = await db
+        ?.rawQuery('SELECT * FROM ydsdb ORDER BY RANDOM() LIMIT $total');
+    return Question.fromData(result!);
   }
 }

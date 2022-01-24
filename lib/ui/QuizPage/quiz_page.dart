@@ -43,7 +43,8 @@ class _QuizPageState extends State<QuizPage> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 5),
-                  child: const Text("1/50"),
+                  child:
+                      Text("${_currentIndex + 1}/${widget.questions.length}"),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
