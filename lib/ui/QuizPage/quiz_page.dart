@@ -40,13 +40,19 @@ class _QuizPageState extends State<QuizPage> {
             color: kBlueColor,
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
                 Container(
+                  alignment: Alignment.center,
                   margin: const EdgeInsets.only(top: 5),
-                  child:
-                      Text("${_currentIndex + 1}/${widget.questions.length}"),
+                  child: Text(
+                    "${_currentIndex + 1}/${widget.questions.length}",
+                    style: TextStyle(
+                      fontSize:
+                          MediaQuery.of(context).size.width > 800 ? 30.0 : 18.0,
+                    ),
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
