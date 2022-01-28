@@ -2,6 +2,7 @@ import 'package:english_quiz/modal/categories.dart';
 import 'package:english_quiz/modal/question.dart';
 import 'package:english_quiz/ui/QuizPage/quiz_finished_page.dart';
 import 'package:english_quiz/ui/constants.dart';
+import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class QuizPage extends StatefulWidget {
@@ -96,27 +97,12 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                     Container(
                       alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color?>(kRedColor),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              side: const BorderSide(color: kGrayColor),
-                            ),
-                          ),
-                          elevation: MaterialStateProperty.all<double?>(
-                            10.0,
-                          ),
-                        ),
-                        onPressed: _nextSubmit,
-                        child: Text(
-                            _currentIndex == (widget.questions.length - 1)
-                                ? "Submit"
-                                : "Next"),
-                      ),
+                      child: ButtonWidget(
+                          colour: kRedColor,
+                          title: _currentIndex == (widget.questions.length - 1)
+                              ? "Submit"
+                              : "Next",
+                          onPress: _nextSubmit),
                     ),
                   ],
                 ),

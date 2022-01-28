@@ -4,6 +4,7 @@ import 'package:english_quiz/modal/question.dart';
 import 'package:english_quiz/ui/ErrorPage/error_page.dart';
 import 'package:english_quiz/ui/QuizPage/quiz_page.dart';
 import 'package:english_quiz/ui/constants.dart';
+import 'package:english_quiz/ui/widget/button_widget.dart';
 import "package:flutter/material.dart";
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:path_provider/path_provider.dart';
@@ -90,27 +91,8 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                 ),
               ),
               const SizedBox(height: 15),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color?>(kRedColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                      side: const BorderSide(color: kGrayColor),
-                    ),
-                  ),
-                  elevation: MaterialStateProperty.all<double?>(
-                    10.0,
-                  ),
-                ),
-                onPressed: () {
-                  _startQuiz();
-                },
-                child: Text(
-                  "Start Quiz",
-                  style: Theme.of(context).textTheme.bodyText2,
-                ),
-              ),
+              ButtonWidget(
+                  colour: kRedColor, title: "Start Quiz", onPress: _startQuiz),
             ],
           ),
         ),
