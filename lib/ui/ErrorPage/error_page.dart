@@ -1,3 +1,5 @@
+import 'package:english_quiz/ui/constants.dart';
+import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -21,9 +23,13 @@ class ErrorPage extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
               Text(message),
-              const TextButton(
-                onPressed: null,
-                child: Text("Retry"),
+              ButtonWidget(
+                onPress: () {
+                  Navigator.of(context).popUntil(
+                      ModalRoute.withName(Navigator.defaultRouteName));
+                },
+                title: "Retry",
+                colour: kGrayColor,
               ),
             ],
           ),

@@ -1,5 +1,3 @@
-import 'package:english_quiz/ui/ErrorPage/error_page.dart';
-import 'package:english_quiz/ui/QuizPage/quiz_page.dart';
 import 'package:english_quiz/ui/home_view.dart';
 import 'package:flutter/material.dart';
 
