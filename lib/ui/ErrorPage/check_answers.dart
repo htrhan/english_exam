@@ -1,4 +1,6 @@
 import 'package:english_quiz/modal/question.dart';
+import 'package:english_quiz/ui/constants.dart';
+import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -15,7 +17,9 @@ class CheckAnswersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Check Answers'),
+        centerTitle: true,
+        backgroundColor: kBlueColor,
+        title: const Text('Check Answers'),
         elevation: 0,
       ),
       body: Stack(
@@ -23,7 +27,7 @@ class CheckAnswersPage extends StatelessWidget {
           ClipPath(
             clipper: WaveClipperTwo(),
             child: Container(
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              decoration: const BoxDecoration(color: kBlueColor),
               height: 200,
             ),
           ),
@@ -39,9 +43,10 @@ class CheckAnswersPage extends StatelessWidget {
 
   Widget _buildItem(BuildContext context, int index) {
     if (index == questions.length) {
-      return RaisedButton(
-        child: Text("Done"),
-        onPressed: () {
+      return ButtonWidget(
+        colour: kRedColor,
+        title: "Done",
+        onPress: () {
           Navigator.of(context)
               .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
         },
@@ -50,6 +55,7 @@ class CheckAnswersPage extends StatelessWidget {
     Question question = questions[index];
     bool correct = question.correctAnswer == answers[index];
     return Card(
+      color: kBlueColor,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -57,30 +63,33 @@ class CheckAnswersPage extends StatelessWidget {
           children: <Widget>[
             Text(
               HtmlUnescape().convert(question.question),
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.0),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
             ),
-            SizedBox(height: 5.0),
+            const SizedBox(height: 5.0),
             Text(
               HtmlUnescape().convert("${answers[index]}"),
               style: TextStyle(
-                  color: correct ? Colors.green : Colors.red,
-                  fontSize: 18.0,
+                  color: correct ? Colors.green : kRedColor,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 5.0),
+            const SizedBox(height: 5.0),
             correct
                 ? Container()
                 : Text.rich(
                     TextSpan(children: [
-                      TextSpan(text: "Answer: "),
+                      const TextSpan(
+                        text: "Answer: ",
+                        style: TextStyle(color: Colors.green),
+                      ),
                       TextSpan(
                           text: HtmlUnescape().convert(question.correctAnswer),
-                          style: TextStyle(fontWeight: FontWeight.w500))
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ))
                     ]),
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 14.0),
                   )
           ],
         ),

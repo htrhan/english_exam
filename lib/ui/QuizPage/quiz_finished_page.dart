@@ -1,5 +1,7 @@
 import 'package:english_quiz/modal/question.dart';
 import 'package:english_quiz/ui/ErrorPage/check_answers.dart';
+import 'package:english_quiz/ui/constants.dart';
+import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class QuizFinishedPage extends StatefulWidget {
@@ -25,99 +27,98 @@ class _QuizFinishedPageState extends State<QuizFinishedPage> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Result'),
+        backgroundColor: kBlueColor,
+        centerTitle: true,
+        title: const Text(
+          'Result',
+        ),
         elevation: 0,
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Theme.of(context).primaryColor,
-          Theme.of(context).accentColor
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        decoration: const BoxDecoration(color: kBlueColor),
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
               Card(
+                color: kRedColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text("Total Questions"),
-                  trailing: Text("${widget.questions.length}"),
+                  title: const Text(
+                    "Total Questions",
+                    style: TextStyle(color: kBlueColor),
+                  ),
+                  trailing: Text(
+                    "${widget.questions.length}",
+                    style: const TextStyle(color: kBlueColor),
+                  ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Card(
+                color: kRedColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text(
+                  title: const Text(
                     "Score",
+                    style: TextStyle(color: kBlueColor),
                   ),
                   trailing: Text(
                     "${correct / widget.questions.length * 100}%",
+                    style: const TextStyle(color: kBlueColor),
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Card(
+                color: kRedColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text(
+                  title: const Text(
                     "Correct Answers",
+                    style: TextStyle(color: kBlueColor),
                   ),
-                  trailing: Text("$correct/${widget.questions.length}"),
+                  trailing: Text(
+                    "$correct/${widget.questions.length}",
+                    style: const TextStyle(color: kBlueColor),
+                  ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Card(
+                color: kRedColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
-                  title: Text(
+                  title: const Text(
                     "Incorrect Answers",
+                    style: TextStyle(color: kBlueColor),
                   ),
                   trailing: Text(
                     "${widget.questions.length - correct}/${widget.questions.length}",
+                    style: const TextStyle(color: kBlueColor),
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  RaisedButton(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 20.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Theme.of(context).accentColor.withOpacity(0.8),
-                    child: Text("Goto Home"),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  RaisedButton(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 20.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Theme.of(context).primaryColor,
-                    child: Text("Check Answers"),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => CheckAnswersPage(
-                                questions: widget.questions,
-                                answers: widget.answers,
-                              )));
-                    },
+                  ButtonWidget(
+                      colour: kRedColor, title: "Go to Home", onPress: home),
+                  ButtonWidget(
+                    onPress: checkAnswers,
+                    title: "Check Answers",
+                    colour: kRedColor,
                   ),
                 ],
               )
@@ -127,4 +128,14 @@ class _QuizFinishedPageState extends State<QuizFinishedPage> {
       ),
     );
   }
+
+  void home() => Navigator.pop(context);
+  void checkAnswers() => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => CheckAnswersPage(
+            questions: widget.questions,
+            answers: widget.answers,
+          ),
+        ),
+      );
 }

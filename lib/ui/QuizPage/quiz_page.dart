@@ -132,9 +132,12 @@ class _QuizPageState extends State<QuizPage> {
         _currentIndex++;
       });
     } else {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (_) => QuizFinishedPage(
-              questions: widget.questions, answers: _answers)));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) =>
+              QuizFinishedPage(questions: widget.questions, answers: _answers),
+        ),
+      );
     }
   }
 
