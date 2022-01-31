@@ -25,7 +25,7 @@ class _TextButtonWidgetState extends State<TextButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      overlayColor: MaterialStateProperty.all(Colors.greenAccent),
+      overlayColor: MaterialStateProperty.all(Colors.red),
       borderRadius: BorderRadius.circular(20),
       onTap: () {
         showDialog(
@@ -33,7 +33,7 @@ class _TextButtonWidgetState extends State<TextButtonWidget> {
           builder: (context) => QuizOptionView(category: widget.category),
         );
       },
-      child: widget.child,
+      child: Center(child: widget.child),
     );
   }
 }
