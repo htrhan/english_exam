@@ -1,3 +1,4 @@
+import 'package:english_quiz/ui/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
@@ -13,6 +14,37 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    return NestedScrollView(
+      headerSliverBuilder: (context, headerisScroll) {
+        return [
+          SliverAppBar(
+            pinned: true,
+            backgroundColor: kBlueColor,
+            expandedHeight: MediaQuery.of(context).size.height * 0.3,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset(
+                "assets/images/appbar.png",
+                fit: BoxFit.contain,
+              ),
+              centerTitle: true,
+              title: Text(
+                headerisScroll
+                    ? "YDS QUİZ"
+                    : "Select a category to start the quiz",
+                style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    fontSize: 12,
+                    color: const Color(0xFFF3D5C0),
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+          ),
+        ];
+      },
+      body: const Gridview(),
+    );
+  }
+
+  Scaffold newMethod(BuildContext context) {
     return Scaffold(
       appBar: _appbar,
       extendBodyBehindAppBar: true,

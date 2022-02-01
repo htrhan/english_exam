@@ -15,42 +15,47 @@ class Gridview extends StatefulWidget {
 class _GridviewState extends State<Gridview> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.count(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        crossAxisCount: 2,
-        children: categories
-            .map(
-              (item) => TextButtonWidget(
-                category: item,
-                child: FrostedGlassBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  height: MediaQuery.of(context).size.width / 3,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(item.icon),
-                        const Divider(
-                          color: kRedColor,
-                          endIndent: 40,
-                          indent: 40,
+    return Scaffold(
+      backgroundColor: kBlueColor,
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverGrid.count(
+            crossAxisCount: 2,
+            children: categories
+                .map(
+                  (item) => TextButtonWidget(
+                    category: item,
+                    child: FrostedGlassBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: MediaQuery.of(context).size.width / 3,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(item.icon),
+                            const Divider(
+                              color: kRedColor,
+                              endIndent: 40,
+                              indent: 40,
+                            ),
+                            Text(
+                              item.title,
+                              style: ThemeData().textTheme.headline1?.copyWith(
+                                  color: const Color(0xFFF3D5C0),
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                        Text(
-                          item.title,
-                          style: ThemeData().textTheme.headline1?.copyWith(
-                              color: const Color(0xFFF3D5C0),
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ), //_glassmorphicWidget(item.icon, item.title),
-              ),
-            )
-            .toList(),
+                )
+                .toList(),
+          )
+        ],
       ),
     );
   }

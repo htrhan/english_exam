@@ -24,9 +24,7 @@ class _TextButtonWidgetState extends State<TextButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      overlayColor: MaterialStateProperty.all(Colors.red),
-      borderRadius: BorderRadius.circular(20),
+    return GestureDetector(
       onTap: () {
         showDialog(
           context: context,
