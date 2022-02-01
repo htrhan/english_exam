@@ -116,7 +116,7 @@ class _QuizOptionViewState extends State<QuizOptionView> {
                       textStyle: Theme.of(context)
                           .textTheme
                           .bodyText2
-                          ?.copyWith(fontSize: 100),
+                          ?.copyWith(fontSize: 80, fontWeight: FontWeight.w400),
                     ),
                     ScaleAnimatedText('let\'s start!'),
                   ]),
