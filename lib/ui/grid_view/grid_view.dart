@@ -21,7 +21,9 @@ class _GridviewState extends State<Gridview> {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverGrid.count(
-            crossAxisCount: 2,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            crossAxisCount: 3,
             children: categories
                 .map(
                   (item) => TextButtonWidget(

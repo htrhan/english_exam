@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SliverAppBar(
             pinned: true,
             backgroundColor: kBlueColor,
-            expandedHeight: MediaQuery.of(context).size.height * 0.3,
+            expandedHeight: MediaQuery.of(context).size.height * 0.4,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 "assets/images/appbar.png",
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ];
       },
-      body: const Gridview(),
+      body: Gridview(),
     );
   }
 
