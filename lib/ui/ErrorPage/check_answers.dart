@@ -86,6 +86,7 @@ class CheckAnswersPage extends StatelessWidget {
                       TextSpan(
                           text: HtmlUnescape().convert(question.correctAnswer),
                           style: const TextStyle(
+                            color: Colors.green,
                             fontWeight: FontWeight.w500,
                           ))
                     ]),

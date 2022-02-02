@@ -43,8 +43,8 @@ class DbHelper {
   Future<List> getQuestions(Category category, int total) async {
     print(category);
     Database? db = await this.db;
-    var result = await db
-        ?.rawQuery('SELECT * FROM ydsdb ORDER BY RANDOM() LIMIT $total');
+    var result = await db?.rawQuery(
+        'SELECT * FROM ydsdb WHERE Type="${category.title}" LIMIT $total');
     return Question.fromData(result!);
   }
 }

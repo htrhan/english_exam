@@ -5,6 +5,7 @@ import 'package:english_quiz/ui/ErrorPage/error_page.dart';
 import 'package:english_quiz/ui/QuizPage/quiz_page.dart';
 import 'package:english_quiz/ui/constants.dart';
 import 'package:english_quiz/ui/widget/button_widget.dart';
+import 'package:english_quiz/ui/widget/page_route.dart';
 import "package:flutter/material.dart";
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:path_provider/path_provider.dart';
@@ -175,11 +176,11 @@ class _QuizOptionViewState extends State<QuizOptionView> {
       }
       Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (_) => QuizPage(
-                    questions: questions,
-                    category: widget.category,
-                  )));
+          BouncyPageRoute(
+              widget: QuizPage(
+            questions: questions,
+            category: widget.category,
+          )));
     } on SocketException catch (_) {
       Navigator.pushReplacement(
           context,

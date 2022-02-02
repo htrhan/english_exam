@@ -22,8 +22,8 @@ class _GridviewState extends State<Gridview> {
         slivers: [
           SliverGrid.count(
             mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
             children: categories
                 .map(
                   (item) => TextButtonWidget(
@@ -35,7 +35,11 @@ class _GridviewState extends State<Gridview> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(item.icon),
+                            Icon(
+                              item.icon,
+                              color: kRedColor,
+                              size: 36,
+                            ),
                             const Divider(
                               color: kRedColor,
                               endIndent: 40,
