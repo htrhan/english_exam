@@ -2,6 +2,7 @@ import 'package:english_quiz/ui/constants.dart';
 import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ErrorPage extends StatelessWidget {
   ErrorPage({Key? key, required this.message}) : super(key: key);
   String message;

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:english_quiz/modal/categories.dart';
 import 'package:english_quiz/modal/question.dart';
 import 'package:flutter/services.dart';

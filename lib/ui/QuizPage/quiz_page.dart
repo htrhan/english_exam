@@ -35,17 +35,27 @@ class _QuizPageState extends State<QuizPage> {
       },
       child: Scaffold(
         key: _key,
-        body: SafeArea(
-          child: Container(
-            color: kBlueColor,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: [
-                Container(
+        body: Container(
+          color: kBlueColor,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 5),
+                child: Container(
                   alignment: Alignment.center,
-                  margin: const EdgeInsets.only(top: 5),
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  decoration: BoxDecoration(
+                      color: kRedColor,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                        width: 1,
+                        color: kGrayColor,
+                      )),
                   child: Text(
                     "${_currentIndex + 1}/${widget.questions.length}",
                     style: TextStyle(
@@ -54,66 +64,67 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(
-                          top: 10, right: 6, left: 6, bottom: 16),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: kRedColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(widget.questions[_currentIndex].question),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(
+                        top: 10, right: 6, left: 6, bottom: 16),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: kRedColor,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    const SizedBox(height: 20.0),
-                    Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          ...options.map(
-                            (option) => RadioListTile<dynamic>(
-                              dense: true,
-                              activeColor: _answers[_currentIndex] == option
-                                  ? kBlueColor
-                                  : kRedColor,
-                              tileColor: _answers[_currentIndex] == option
-                                  ? kRedColor
-                                  : kBlueColor,
-                              title: Text(
-                                "$option",
-                                style: MediaQuery.of(context).size.width > 800
-                                    ? const TextStyle(fontSize: 30.0)
-                                    : null,
-                              ),
-                              groupValue: _answers[_currentIndex],
-                              value: option,
-                              onChanged: (value) {
-                                setState(() {
-                                  _answers[_currentIndex] = option;
-                                });
-                              },
+                    child: Text(widget.questions[_currentIndex].question),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        ...options.map(
+                          (option) => RadioListTile<dynamic>(
+                            dense: true,
+                            activeColor: _answers[_currentIndex] == option
+                                ? kBlueColor
+                                : kRedColor,
+                            tileColor: _answers[_currentIndex] == option
+                                ? kRedColor
+                                : kBlueColor,
+                            title: Text(
+                              "$option",
+                              style: MediaQuery.of(context).size.width > 800
+                                  ? const TextStyle(
+                                      fontSize: 30.0, color: Colors.white)
+                                  : const TextStyle(color: Colors.white),
                             ),
+                            groupValue: _answers[_currentIndex],
+                            value: option,
+                            onChanged: (value) {
+                              setState(() {
+                                _answers[_currentIndex] = option;
+                              });
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: ButtonWidget(
-                          colour: kRedColor,
-                          title: _currentIndex == (widget.questions.length - 1)
-                              ? "Submit"
-                              : "Next",
-                          onPress: _nextSubmit),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    child: ButtonWidget(
+                        colour: kRedColor,
+                        title: _currentIndex == (widget.questions.length - 1)
+                            ? "Submit"
+                            : "Next",
+                        onPress: _nextSubmit),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
