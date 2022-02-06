@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xffB7E9FF);
-const kGreenColor = Color(0xFF6AC259);
-const kBlueColor = Color(0xFF676FA3);
+//main color
 const kRedColor = Color(0xFFFF5959);
+const kBlueColor = Color(0xFF676FA3);
 const kGrayColor = Color(0xFFC1C1C1);
+const kGreenColor = Color(0xFF6AC259);
 const kBlackColor = Color(0xFF101010);
 const kAnimateColor = Color(0xFF46D9BF);
+
 const kPrimaryGradient = LinearGradient(
   colors: [Color(0xFF1A2A46), Color(0xFF1F1E33)],
   begin: Alignment.centerLeft,
@@ -20,7 +21,7 @@ const kGridGradient = LinearGradient(
 const double kDefaultPadding = 20.0;
 
 const quiztext = TextStyle(
-  color: Colors.black,
+  color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 14,
 );

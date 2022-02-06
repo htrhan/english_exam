@@ -1,5 +1,5 @@
 import 'package:english_quiz/modal/question.dart';
-import 'package:english_quiz/ui/ErrorPage/check_answers.dart';
+import 'package:english_quiz/ui/QuizPage/check_answers.dart';
 import 'package:english_quiz/ui/constants.dart';
 import 'package:english_quiz/ui/widget/button_widget.dart';
 import 'package:english_quiz/ui/widget/page_route.dart';
